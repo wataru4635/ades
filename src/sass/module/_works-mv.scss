@@ -1,0 +1,50 @@
+@use "global"as *;
+
+.works-mv {
+  margin-top: var(--header-height);
+  height: 368px;
+  position: fixed;
+  width: 100%;
+  inset: 0;
+  z-index: -1;
+  background: url('../images/works/works-mv-sp.webp') no-repeat top center / cover;
+
+  @include mq('md') {
+    height: 420px;
+    background: url('../images/works/works-mv.webp') no-repeat top center / cover;
+  }
+}
+
+.works-mv__inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: rem(30);
+
+  @include mq('md') {
+    padding-left: rem(180);
+  }
+}
+
+.works-mv__en-title {
+  color: var(--white);
+  font-size: 45px;
+  font-weight: 600;
+  font-family: $second-font-family;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.works-mv__jp-title {
+  color: var(--white);
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 1.8px;
+
+  @include mq('md') {
+    margin-top: rem(5);
+  }
+}

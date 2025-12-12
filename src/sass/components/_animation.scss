@@ -1,0 +1,63 @@
+@use "global"as *;
+
+/* ===============================================
+# フェードアニメーション：IntersectionObserver＆GSAP用
+=============================================== */
+
+/* フェード */
+.js-fade-in {
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+
+  &.is-active {
+    opacity: 1;
+  }
+}
+
+.js-link-btn {
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out .3s, color .3s, background-color .3s;
+
+  &.is-active {
+    opacity: 1;
+  }
+}
+
+
+
+////////////////////
+// 遅延時間の指定
+////////////////////
+
+:root {
+  --delay-1: 0.2s;
+  --delay-2: 0.4s;
+  --delay-3: 0.6s;
+  --delay-4: 0.8s;
+}
+
+.--delay-1 {
+  transition-delay: var(--delay-1);
+}
+
+.--delay-2 {
+  transition-delay: var(--delay-2);
+}
+
+.--delay-3 {
+  transition-delay: var(--delay-3);
+}
+
+.--delay-4 {
+  transition-delay: var(--delay-4);
+}
+
+@media (max-width: 768px) {
+
+  .--delay-1,
+  .--delay-2,
+  .--delay-3,
+  .--delay-4 {
+    transition-delay: .2s;
+  }
+}

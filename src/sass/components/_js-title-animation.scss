@@ -1,0 +1,29 @@
+@use "global"as *;
+
+.section-title.js-title-animation {
+  display: inline-block;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: linear-gradient(80deg, var(--main-color) 33.33%, #0038B5, #00FFFF, #002aff, #049bff, #00FFFF, rgba(255, 255, 255, 0) 60%);
+  background-position: right center;
+  background-size: 300%;
+  color: transparent;
+
+  &.is-active {
+    animation: txtPika 1.5s ease-in-out forwards;
+  }
+}
+
+@keyframes txtPika {
+  0% {
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+
+  }
+
+  100% {
+    background-position: 0 0;
+    -webkit-background-clip: text;
+
+  }
+}

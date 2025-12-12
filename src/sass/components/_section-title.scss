@@ -1,0 +1,20 @@
+@use "global"as *;
+
+.section-title {
+  font-family: $second-font-family;
+  color: var(--main-color);
+  font-size: rem(40);
+  font-weight: 500;
+  letter-spacing: 1.2px;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+
+  line-height: 1;
+
+  @include mq('md') {
+    font-size: rem(50);
+    letter-spacing: 1.5px;
+  }
+}

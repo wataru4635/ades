@@ -1,0 +1,42 @@
+@use "global" as *;
+
+.clients {
+  background-color: var(--white);
+  padding-block: rem(80);
+  @include mq('md') {
+  padding-block: rem(120);
+  }
+}
+
+
+.clients__lists {
+display: grid;
+grid-template-columns: 1fr;
+margin-top: rem(40);
+@include mq('md') {
+grid-template-columns: repeat(2, 1fr);
+gap: rem(30);
+margin-top: rem(80);
+}
+}
+
+.clients__list {
+display: flex;
+flex-direction: column;
+}
+
+.clients__list--01 {
+
+}
+
+.clients__item {
+  font-size: rem(15);
+  font-weight: var(--font-weight-regular);
+  line-height: 2;
+  letter-spacing: calc(1.5 / 15 * 1em);
+}
+
+.clients__list--02 {
+
+}
+
