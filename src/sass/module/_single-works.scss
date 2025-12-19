@@ -166,7 +166,7 @@
   @include mq('md') {
     margin-top: rem(120);
     padding: rem(120) 35px rem(120);
-    grid-template: repeat(2, auto) / repeat(2, auto);
+    grid-template: repeat(3, auto) / repeat(2, auto);
     gap: rem(40) rem(20);
     padding-bottom: rem(120);
     max-width: 1150px;
@@ -188,6 +188,18 @@
 .single-works__gallery-item--03 {
   @include mq('md') {
     grid-row-start: 2;
+  }
+}
+
+.single-works__gallery-item--04 {
+  @include mq('md') {
+    grid-row-start: 3;
+  }
+}
+
+.single-works__gallery-item--05 {
+  @include mq('md') {
+    grid-row-start: 3;
   }
 }
 

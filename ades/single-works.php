@@ -5,18 +5,18 @@
         <?php 
         if (has_post_thumbnail()) :
             $thumbnail_id = get_post_thumbnail_id();
-            $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+            $thumbnail_url = esc_url(get_the_post_thumbnail_url(get_the_ID(), 'full'));
             $alt_text = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
         elseif (get_field('image_1')) :
             $image_1 = get_field('image_1');
             $thumbnail_url = esc_url($image_1['url']);
             $alt_text = esc_attr($image_1['alt']);
         else :
-            $thumbnail_url = get_template_directory_uri() . '/assets/images/common/no-image.webp';
+            $thumbnail_url = esc_url(get_template_directory_uri()) . '/assets/images/common/no-image.webp';
             $alt_text = '画像なし';
         endif;
         ?>
-        <img src="<?php echo $thumbnail_url; ?>" alt="<?php echo esc_attr($alt_text); ?>" width="1440" height="420">
+        <img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($alt_text); ?>" width="1440" height="420">
     </div>
 
     <div class="single-works-mv__content">
@@ -34,13 +34,13 @@
 <section class="single-works">
     <div class="single-works__inner inner">
         <ul class="single-works__breadcrumbs breadcrumbs">
-            <li class="breadcrumbs-item"><a href="/" class="breadcrumbs-link">Top</a></li>
+            <li class="breadcrumbs-item"><a href="<?php echo esc_url(home_url('/')); ?>" class="breadcrumbs-link">Top</a></li>
             <li class="breadcrumbs-item breadcrumbs-item--arrow">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/common/arrow.svg" alt="矢印" width="4" height="8">
+                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/common/arrow.svg" alt="矢印" width="4" height="8">
             </li>
             <li class="breadcrumbs-item"><a href="<?php echo esc_url(home_url('/works')); ?>" class="breadcrumbs-link">Works</a></li>
             <li class="breadcrumbs-item breadcrumbs-item--arrow">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/common/arrow.svg" alt="矢印" width="4" height="8">
+                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/common/arrow.svg" alt="矢印" width="4" height="8">
             </li>
             <li class="breadcrumbs-item breadcrumbs-item--single"><?php the_title(); ?></li>
         </ul>
@@ -58,7 +58,7 @@
                             <dd class="single-works__info-detail"><?php the_field('launch_date'); ?></dd>
                         </div>
                         <div class="single-works__info-item">
-                            <dt class="single-works__info-title">Project Team</dt>
+                            <dt class="single-works__info-title">Project</dt>
                             <dd class="single-works__info-detail single-works__info-detail--team-wrap">
                                 <?php 
                                 $project_team = get_field('project_team');
@@ -92,6 +92,8 @@
                     $image_1 = get_field('image_1');
                     $image_2 = get_field('image_2');
                     $image_3 = get_field('image_3');
+                    $image_4 = get_field('image_4');
+                    $image_5 = get_field('image_5');
                     ?>
                     <?php if ($image_1) : ?>
                         <div class="single-works__gallery-item single-works__gallery-item--01 js-fade-in">
@@ -106,6 +108,16 @@
                     <?php if ($image_3) : ?>
                         <div class="single-works__gallery-item single-works__gallery-item--03 js-fade-in">
                             <img src="<?php echo esc_url($image_3['url']); ?>" class="single-works__gallery-img single-works__gallery-img--03" alt="<?php echo esc_attr($image_3['alt']); ?>" width="531" height="368" loading="lazy">
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($image_4) : ?>
+                        <div class="single-works__gallery-item single-works__gallery-item--04 js-fade-in">
+                            <img src="<?php echo esc_url($image_4['url']); ?>" class="single-works__gallery-img single-works__gallery-img--04" alt="<?php echo esc_attr($image_4['alt']); ?>" width="531" height="368" loading="lazy">
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($image_5) : ?>
+                        <div class="single-works__gallery-item single-works__gallery-item--05 js-fade-in">
+                            <img src="<?php echo esc_url($image_5['url']); ?>" class="single-works__gallery-img single-works__gallery-img--05" alt="<?php echo esc_attr($image_5['alt']); ?>" width="531" height="368" loading="lazy">
                         </div>
                     <?php endif; ?>
                 </div>

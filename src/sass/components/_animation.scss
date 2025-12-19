@@ -1,10 +1,5 @@
 @use "global"as *;
 
-/* ===============================================
-# フェードアニメーション：IntersectionObserver＆GSAP用
-=============================================== */
-
-/* フェード */
 .js-fade-in {
   opacity: 0;
   transition: opacity 1.2s ease-in-out;

@@ -31,7 +31,8 @@ body {
 
 // フルリキッド
 :root {
-  --fluid-basis-mobile: (100vw - 340px) / (375 - 320);
+  --vw-ref-mobile: 390;
+  --fluid-basis-mobile: (100vw - 320px) / (390 - 320);
   --fluid-basis: (100vw - 768px) / (1440 - 768);
   --fluid-basis-2: (100vw - 1440px) / (1800 - 1440);
 }

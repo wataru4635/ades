@@ -10,6 +10,7 @@
   }
 }
 
+
 .contact::before {
   content: "";
   position: absolute;
@@ -24,6 +25,10 @@
     border-radius: 0px 50px 0px 0px;
     width: calc(100% - 50px);
   }
+}
+
+.contact-form__breadcrumbs {
+  padding-top: rem(50);
 }
 
 

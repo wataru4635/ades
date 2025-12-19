@@ -1,16 +1,10 @@
 "use strict";
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 document.addEventListener("DOMContentLoaded", function () {
   /* ===============================================
   # MVのスライダー
   =============================================== */
-  var mv_swiper = new Swiper(".js-mv-swiper", {
+  const mv_swiper = new Swiper(".js-mv-swiper", {
     loop: true,
     parallax: true,
     // パララックスさせる
@@ -30,64 +24,49 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ===============================================
   # worksのスライダー
   =============================================== */
-
-  var slider = new Swiper('.js-works-swiper', {
-    loop: true,
-    speed: 7000,
-    allowTouchMove: false,
-    spaceBetween: 10,
-    autoplay: {
-      delay: 0,
-      disableOnInteraction: false,
-      reverseDirection: true
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 2
+  const createWorksSwiper = function (selector) {
+    let reverseDirection = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    return new Swiper(selector, {
+      loop: true,
+      speed: 12000,
+      allowTouchMove: false,
+      spaceBetween: 10,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+        ...(reverseDirection && {
+          reverseDirection: true
+        })
       },
-      768: {
-        slidesPerView: 3
-      },
-      1024: {
-        slidesPerView: 4
+      breakpoints: {
+        320: {
+          slidesPerView: 2
+        },
+        768: {
+          slidesPerView: 3
+        },
+        1024: {
+          slidesPerView: 4
+        }
       }
-    }
-  });
-  var slider2 = new Swiper('.js-works-swiper02', {
-    loop: true,
-    speed: 7000,
-    allowTouchMove: false,
-    spaceBetween: 10,
-    autoplay: {
-      delay: 0,
-      disableOnInteraction: false
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 2
-      },
-      768: {
-        slidesPerView: 3
-      },
-      1024: {
-        slidesPerView: 4
-      }
-    }
-  });
+    });
+  };
+  const slider = createWorksSwiper('.js-works-swiper', true);
+  const slider2 = createWorksSwiper('.js-works-swiper02');
 
   /* ===============================================
   # テキストをspanで囲み、
   =============================================== */
   function wrapTextInSpans(selector) {
-    var elements = document.querySelectorAll(selector);
-    elements.forEach(function (element, elementIndex) {
-      var text = element.textContent;
+    const elements = document.querySelectorAll(selector);
+    elements.forEach((element, elementIndex) => {
+      const text = element.textContent;
       element.textContent = ''; // 元のテキストをクリア
       element.style.setProperty('--delay', elementIndex * 0.3 + 's'); // 要素ごとの遅延
 
-      _toConsumableArray(text).forEach(function (_char, index) {
-        var span = document.createElement('span');
-        span.textContent = _char;
+      [...text].forEach((char, index) => {
+        const span = document.createElement('span');
+        span.textContent = char;
         span.style.setProperty('--index', index);
         element.appendChild(span);
       });
@@ -100,10 +79,10 @@ document.addEventListener("DOMContentLoaded", function () {
   =============================================== */
 
   function updateMVHeight() {
-    var mv = document.querySelector('.mv');
+    const mv = document.querySelector('.mv');
     if (mv) {
-      var mvHeight = mv.offsetHeight;
-      document.documentElement.style.setProperty('--mv-height', "".concat(mvHeight, "px"));
+      const mvHeight = mv.offsetHeight;
+      document.documentElement.style.setProperty('--mv-height', `${mvHeight}px`);
     }
   }
 
@@ -113,15 +92,15 @@ document.addEventListener("DOMContentLoaded", function () {
   // ウィンドウリサイズ時にも更新
   window.addEventListener('resize', updateMVHeight);
 });
-document.addEventListener("DOMContentLoaded", function () {
-  var stickyAbout = document.querySelector(".about"); // aboutセクションのクラスを指定
+document.addEventListener("DOMContentLoaded", () => {
+  const stickyAbout = document.querySelector(".about"); // aboutセクションのクラスを指定
   if (!stickyAbout) return;
-  var adjustStickyTop = function adjustStickyTop() {
-    var windowHeight = window.innerHeight;
-    var aboutHeight = stickyAbout.offsetHeight;
+  const adjustStickyTop = () => {
+    const windowHeight = window.innerHeight;
+    const aboutHeight = stickyAbout.offsetHeight;
     if (aboutHeight > windowHeight) {
       // 画面の高さを超える場合、余分な部分を引いてtopを調整
-      stickyAbout.style.top = "".concat(windowHeight - aboutHeight, "px");
+      stickyAbout.style.top = `${windowHeight - aboutHeight}px`;
     } else {
       // 画面に収まる場合はデフォルトのtop 0を適用
       stickyAbout.style.top = "0";
@@ -137,8 +116,8 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ===============================================
   # aboutへのリンク
   =============================================== */
-  var aboutLinks = document.querySelectorAll('a[href="#about"]');
-  aboutLinks.forEach(function (link) {
+  const aboutLinks = document.querySelectorAll('a[href="#about"]');
+  aboutLinks.forEach(link => {
     link.addEventListener("click", function (event) {
       event.preventDefault();
 
@@ -152,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
       stickyAbout.scrollIntoView({
         behavior: "smooth"
       });
-      setTimeout(function () {
+      setTimeout(() => {
         // スクロール完了後 `sticky` を再適用
         stickyAbout.style.position = "sticky";
 

@@ -21,7 +21,7 @@
       <div class="contact__inner inner">
         <div class="contact__content">
           <h2 class="contact__title section-title js-title-animation">contact</h2>
-          <a href="/contact/" class="contact__link js-link-btn"><span class="contact__link-text">お問い合わせ</span></a>
+          <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="contact__link js-link-btn"><span class="contact__link-text">お問い合わせ</span></a>
         </div>
       </div>
     </section>

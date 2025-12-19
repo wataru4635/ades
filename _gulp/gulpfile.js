@@ -8,6 +8,8 @@ const postcss = require("gulp-postcss"); // CSSの変換処理を行うための
 const autoprefixer = require("autoprefixer"); // ベンダープレフィックスを自動的に追加するためのモジュール
 const cssdeclsort = require("css-declaration-sorter"); // CSSの宣言をソートするためのモジュール
 const postcssPresetEnv = require("postcss-preset-env"); // 最新のCSS構文を使用可能にするためのモジュール
+const discardDuplicates = require("postcss-discard-duplicates"); // 重複するCSSプロパティを削除するためのモジュール
+const removeGridGap = require("./remove-grid-gap"); // grid-gapプロパティを削除するカスタムプラグイン
 const sourcemaps = require("gulp-sourcemaps"); // ソースマップを作成するためのモジュール
 const babel = require("gulp-babel"); // ES6+のJavaScriptをES5に変換するためのモジュール
 const imageminSvgo = require("imagemin-svgo"); // SVGを最適化するためのモジュール
@@ -47,7 +49,7 @@ const destWpPath = {
   img: `../${themeName}/assets/images/`,
 };
 
-const browsers = ["last 2 versions", "> 5%", "ie = 11", "not ie <= 10", "ios >= 8", "and_chr >= 5", "Android >= 5"];
+// browserslistはpackage.jsonで管理
 
 // HTMLファイルのコピー
 const htmlCopy = () => {
@@ -75,22 +77,30 @@ const cssSass = () => {
           outputStyle: "expanded", // コンパイル後のCSSの書式（expanded or compressed）
         })
       )
-      // ベンダープレフィックスを自動付与
+      // ベンダープレフィックスを自動付与、CSSプロパティをアルファベット順にソート、未来のCSS構文を使用可能に
       .pipe(
         postcss([
-          postcssPresetEnv(),
           autoprefixer({
-            grid: true,
+            grid: false
           }),
+          cssdeclsort({
+            order: "alphabetical"
+          }),
+          postcssPresetEnv({
+            preserve: true,
+            features: {
+              'custom-properties': false,
+              'nesting-rules': true,
+              'grid-template-areas': false,
+              'grid-area': false,
+              'gap-properties': { preserve: true } // gapプロパティを保持
+            },
+            autoprefixer: false,
+            enableClientSidePolyfills: false
+          }),
+          removeGridGap(), // grid-gapプロパティを削除
+          discardDuplicates() // 重複するCSSプロパティを削除
         ])
-      )
-      // CSSプロパティをアルファベット順にソートし、未来のCSS構文を使用可能に
-      .pipe(
-        postcss([cssdeclsort({
-          order: "alphabetical"
-        })]
-        ),
-        postcssPresetEnv({ browsers: 'last 2 versions' })
       )
       // メディアクエリを統合
       .pipe(mmq())

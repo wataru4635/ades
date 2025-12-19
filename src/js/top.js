@@ -22,51 +22,33 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ===============================================
   # worksのスライダー
   =============================================== */
-
-  const slider = new Swiper('.js-works-swiper', {
-    loop: true,
-    speed: 7000,
-    allowTouchMove: false,
-    spaceBetween: 10,
-    autoplay: {
-      delay: 0,
-      disableOnInteraction: false,
-      reverseDirection: true,
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 2
+  const createWorksSwiper = (selector, reverseDirection = false) => {
+    return new Swiper(selector, {
+      loop: true,
+      speed: 12000,
+      allowTouchMove: false,
+      spaceBetween: 10,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+        ...(reverseDirection && { reverseDirection: true }),
       },
-      768: {
-        slidesPerView: 3
-      },
-      1024: {
-        slidesPerView: 4
+      breakpoints: {
+        320: {
+          slidesPerView: 2
+        },
+        768: {
+          slidesPerView: 3
+        },
+        1024: {
+          slidesPerView: 4
+        }
       }
-    }
-  });
+    });
+  };
 
-  const slider2 = new Swiper('.js-works-swiper02', {
-    loop: true,
-    speed: 7000,
-    allowTouchMove: false,
-    spaceBetween: 10,
-    autoplay: {
-      delay: 0,
-      disableOnInteraction: false,
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 2
-      },
-      768: {
-        slidesPerView: 3
-      },
-      1024: {
-        slidesPerView: 4
-      }
-    }
-  });
+  const slider = createWorksSwiper('.js-works-swiper', true);
+  const slider2 = createWorksSwiper('.js-works-swiper02');
 
 
   /* ===============================================

@@ -1,0 +1,229 @@
+@use "global" as *;
+
+.business-partner {
+  background-color: #F4F4F4;
+  padding-block: rem(80) rem(105);
+  border-radius: 25px 25px 0px 0px;
+margin-top: -25px;
+  @include mq('md') {
+    padding-block: rem(120) rem(170);
+    border-radius: 50px 50px 0px 0px;
+margin-top: -50px;
+  }
+}
+
+.business-partner__title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: rem(19);
+  position: relative;
+  @include mq('md') {
+    gap: rem(15);
+  }
+}
+
+.business-partner__title-wrap::after {
+  content: '';
+  width: rem(60);
+  height: 1px;
+  background-color: var(--main-color);
+  display: block;
+
+  @include mq('md') {
+    width: rem(80);
+  }
+}
+
+.business-partner__title {
+  font-family: $second-font-family;
+  color: var(--main-color);
+  font-size: clamp(35px, calc(35px + 5 * var(--fluid-basis-mobile)), 40px);
+  font-weight: 500;
+  line-height: 1em;
+  letter-spacing: 0.03em;
+  text-align: center;
+
+  @include mq('md') {
+    font-size: rem(50);
+  }
+}
+
+.business-partner__content {
+  margin-top: rem(32);
+  display: flex;
+  flex-direction: column;
+  gap: rem(25);
+margin-inline: auto;
+  @include mq('md') {
+    margin-top: rem(72);
+    max-width: rem(900);
+    gap: rem(22);
+
+  }
+}
+
+.business-partner__company {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include mq('md') {
+    gap: rem(8);
+  }
+}
+
+.business-partner__company-name {
+  font-family: $base-font-family;
+  font-size: rem(22);
+  font-weight: 700;
+  line-height: 1.4545454545454546;
+  letter-spacing: 0.1em;
+  color: var(--main-color);
+  text-align: center;
+
+  @include mq('md') {
+    font-size: rem(27);
+    line-height: 1.1851851851851851;
+  }
+}
+
+.business-partner__company-name-en {
+  font-family: $base-font-family;
+  font-size: rem(15);
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: 0.1em;
+  color: var(--black);
+  text-align: center;
+}
+
+.business-partner__services {
+  display: flex;
+  flex-direction: column;
+  gap: rem(10);
+  width: 100%;
+
+  @include mq('md') {
+    align-items: center;
+  }
+}
+
+.business-partner__services-row {
+  display: flex;
+  flex-direction: column;
+  gap: rem(10);
+  width: 100%;
+
+  @include mq('md') {
+    flex-direction: row;
+    width: rem(900);
+    justify-content: stretch;
+  }
+
+  &:first-child {
+    @include mq('md') {
+      width: rem(900);
+      height: rem(51);
+    }
+  }
+
+  &:last-child {
+    @include mq('md') {
+      width: rem(900);
+      height: rem(51);
+    }
+  }
+}
+
+.business-partner__service-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--white);
+  padding: rem(14) rem(10);
+  text-decoration: none;
+  width: 100%;
+@media (max-width: 767px) {
+position: relative;
+justify-content: center;
+}
+  @include mq('md') {
+    padding: rem(20) clamp(6px, calc(6px + 8 * var(--fluid-basis)), 14px) rem(20) rem(19);
+    flex: 1;
+  }
+  @media (any-hover: hover) {
+    &:hover {
+      .business-partner__service-icon {
+        animation: arrow .3s ease-in-out;
+      }
+    }
+  }
+}
+
+.business-partner__service-text {
+  font-family: $base-font-family;
+  font-size: rem(15);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--main-color);
+  letter-spacing: 1.5px;
+text-decoration-line: underline;
+text-decoration-style: solid;
+text-decoration-skip-ink: auto;
+text-decoration-thickness: auto;
+}
+
+.business-partner__service-icon-wrap {
+  width: rem(18);
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  position: absolute;
+  @media (max-width: 767px) {
+  right: rem(11);
+  top: 50%;
+  transform: translateY(-50%);
+  }
+  @include mq('md') {
+    position: relative;
+  }
+}
+
+.business-partner__service-icon.material-symbols-outlined {
+  color: var(--main-color);
+  font-size: rem(14);
+  font-weight: 400;
+  line-height: rem(15);
+  letter-spacing: rem(1.4);
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+}
+
+@keyframes arrow {
+  0% {
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  49% {
+    -webkit-transform: translate(calc(-50% + 80%), calc(-50% - 80%));
+    transform: translate(calc(-50% + 80%), calc(-50% - 80%));
+    visibility: hidden;
+  }
+
+  50% {
+    -webkit-transform: translate(calc(-50% - 80%), calc(-50% + 80%));
+    transform: translate(calc(-50% - 80%), calc(-50% + 80%));
+    visibility: hidden;
+  }
+
+  52% {
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}

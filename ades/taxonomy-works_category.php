@@ -13,10 +13,10 @@
     <!-- パンくずリスト -->
     <ul class="sub-works__breadcrumbs breadcrumbs">
       <li class="breadcrumbs-item">
-        <a href="<?php echo home_url('/'); ?>" class="breadcrumbs-link">Top</a>
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="breadcrumbs-link">Top</a>
       </li>
       <li class="breadcrumbs-item breadcrumbs-item--arrow">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/common/arrow.svg" alt="矢印" width="4"
+        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/common/arrow.svg" alt="矢印" width="4"
           height="8">
       </li>
       <li class="breadcrumbs-item">Works</li>
@@ -33,13 +33,13 @@
         ?>
     <ul class="sub-works__tabs">
       <li class="sub-works__tab">
-        <a href="<?php echo get_post_type_archive_link('works'); ?>"
+        <a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>"
           class="sub-works__tab-link <?php echo (is_post_type_archive('works') ? 'current' : ''); ?>">すべて</a>
       </li>
       <?php if (!empty($terms) && !is_wp_error($terms)) : ?>
       <?php foreach ($terms as $term) : ?>
       <li class="sub-works__tab">
-        <a href="<?php echo get_term_link($term); ?>" class="sub-works__tab-link 
+        <a href="<?php echo esc_url(get_term_link($term)); ?>" class="sub-works__tab-link 
                             <?php 
                             if (is_tax($taxonomy) && isset($current_term->term_id) && $current_term->term_id == $term->term_id) {
                                 echo 'current'; 
@@ -69,7 +69,7 @@
                 // サムネイル画像がない場合は、ACFの 'image_1' を取得
                 if (!$thumbnail_url) {
                     $image_1 = get_field('image_1'); // ACFのカスタムフィールド
-                    $thumbnail_url = $image_1 ? esc_url($image_1['url']) : get_template_directory_uri() . '/assets/images/common/no-image.webp';
+                    $thumbnail_url = $image_1 ? esc_url($image_1['url']) : esc_url(get_template_directory_uri()) . '/assets/images/common/no-image.webp';
                 }
                 ?>
         <li class="sub-works__card-item js-fade-in">
@@ -101,7 +101,7 @@
   <div class="contact__inner inner">
     <div class="contact__content">
       <h2 class="contact__title section-title js-title-animation">contact</h2>
-      <a href="/contact/" class="contact__link js-link-btn">
+      <a href="<?php echo esc_url(home_url('/contact')); ?>" class="contact__link js-link-btn">
         <span class="contact__link-text">お問い合わせ</span>
       </a>
     </div>

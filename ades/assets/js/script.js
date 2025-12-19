@@ -3,15 +3,15 @@
 /* ===============================================
 # ヘッダー、ハンバーガーメニュー
 =============================================== */
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   // 定数
-  var OPEN_CLASS = "is-open";
+  const OPEN_CLASS = "is-open";
 
   // DOMの取得
-  var hamburger = document.querySelector(".js-hamburger");
-  var drawer = document.querySelector(".js-drawer");
-  var header = document.querySelector(".js-header"); // ヘッダー要素を取得
-  var mediaQuery = window.matchMedia("(min-width: 768px)");
+  const hamburger = document.querySelector(".js-hamburger");
+  const drawer = document.querySelector(".js-drawer");
+  const header = document.querySelector(".js-header"); // ヘッダー要素を取得
+  const mediaQuery = window.matchMedia("(min-width: 768px)");
 
   // ドロワーメニューを開く
   function openDrawer() {
@@ -42,17 +42,17 @@ document.addEventListener("DOMContentLoaded", function () {
   hamburger.addEventListener("click", toggleDrawer);
 
   // ドロワーメニュー内のリンクをクリックしたら閉じる（イベントデリゲーション）
-  drawer.addEventListener("click", function (event) {
+  drawer.addEventListener("click", event => {
     if (event.target.matches("a[href]")) {
       setTimeout(closeDrawer, 100); // 遷移後に閉じる
     }
   });
 
   // リサイズイベントの最適化
-  var resizeTimeout;
-  window.addEventListener("resize", function () {
+  let resizeTimeout;
+  window.addEventListener("resize", () => {
     clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(function () {
+    resizeTimeout = setTimeout(() => {
       if (mediaQuery.matches) {
         closeDrawer();
       }
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // メディアクエリ変更時の対応
-  mediaQuery.addEventListener("change", function () {
+  mediaQuery.addEventListener("change", () => {
     if (mediaQuery.matches) {
       closeDrawer();
     }
@@ -71,20 +71,18 @@ document.addEventListener("DOMContentLoaded", function () {
 # スクロールアニメーション
 // =============================================== */
 function observeElements(selector) {
-  var activeClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "is-active";
-  var elements = document.querySelectorAll(selector);
+  let activeClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "is-active";
+  const elements = document.querySelectorAll(selector);
   function handleIntersect(entries, observer) {
-    entries.forEach(function (entry) {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add(activeClass);
         observer.unobserve(entry.target);
       }
     });
   }
-  var observer = new IntersectionObserver(handleIntersect);
-  elements.forEach(function (element) {
-    return observer.observe(element);
-  });
+  const observer = new IntersectionObserver(handleIntersect);
+  elements.forEach(element => observer.observe(element));
 }
 
 // 使い方例
@@ -97,10 +95,10 @@ observeElements(".js-link-btn");
 /* ===============================================
 # ヘッダーの高さをCSS変数に設定
 =============================================== */
-var setHeaderHeight = function setHeaderHeight() {
-  var header = document.querySelector(".header");
+const setHeaderHeight = () => {
+  const header = document.querySelector(".header");
   if (header) {
-    document.documentElement.style.setProperty("--header-height", "".concat(header.offsetHeight, "px"));
+    document.documentElement.style.setProperty("--header-height", `${header.offsetHeight}px`);
   }
 };
 

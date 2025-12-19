@@ -96,10 +96,10 @@ function enqueue_preload_headers() {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
-    href="https://fonts.googleapis.com/css2?family=Crimson+Text&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Noto+Sans+JP:wght@100..900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Noto+Sans+JP:wght@100..900&display=swap"
     rel="preload" as="style" fetchpriority="high">
 <link
-    href="https://fonts.googleapis.com/css2?family=Crimson+Text&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Noto+Sans+JP:wght@100..900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Noto+Sans+JP:wght@100..900&display=swap"
     rel="stylesheet" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <?php
