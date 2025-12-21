@@ -4,7 +4,7 @@
   <div class="footer__inner inner">
     <div class="footer__wrap">
       <a href="<?php echo esc_url(home_url('')); ?>" class="footer__logo">
-        <img src="<?php echo esc_url(get_theme_file_uri()); ?>/assets/images/common/logo.svg" class="footer__logo-img"
+        <img src="<?php echo esc_url(get_theme_file_uri()); ?>/assets/images/common/logo.webp" class="footer__logo-img"
           alt="株式会社ades" width="200" height="45" loading="lazy">
       </a>
       <div class="footer__info">

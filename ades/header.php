@@ -17,7 +17,7 @@
     <div class="header__inner">
       <a href="<?php echo esc_url(home_url('')); ?>" class="header__logo-wrap">
         <?php echo is_front_page() ? '<h1 class="header__logo">' : '<div class="header__logo">'; ?>
-        <img src="<?php echo esc_url(get_theme_file_uri()); ?>/assets/images/common/logo.svg" class="header__logo-img"
+        <img src="<?php echo esc_url(get_theme_file_uri()); ?>/assets/images/common/logo.webp" class="header__logo-img"
           alt="株式会社ades" width="200" height="45">
         <?php echo is_front_page() ? '</h1>' : '</div>'; ?>
         <p class="header__text">For advertising and design frontier,we will provide excellent services.</p>

@@ -7,9 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const mv_swiper = new Swiper(".js-mv-swiper", {
     loop: true,
     parallax: true,
-    // パララックスさせる
     allowTouchMove: false,
-    // マウスでのスワイプを禁止
     speed: 2000,
     autoplay: {
       delay: 3000,
@@ -51,8 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   };
-  const slider = createWorksSwiper('.js-works-swiper', true);
-  const slider2 = createWorksSwiper('.js-works-swiper02');
+  createWorksSwiper('.js-works-swiper', true);
+  createWorksSwiper('.js-works-swiper02');
 
   /* ===============================================
   # テキストをspanで囲み、
@@ -60,16 +58,52 @@ document.addEventListener("DOMContentLoaded", function () {
   function wrapTextInSpans(selector) {
     const elements = document.querySelectorAll(selector);
     elements.forEach((element, elementIndex) => {
-      const text = element.textContent;
-      element.textContent = ''; // 元のテキストをクリア
-      element.style.setProperty('--delay', elementIndex * 0.3 + 's'); // 要素ごとの遅延
+      element.style.setProperty('--delay', elementIndex * 0.3 + 's');
 
-      [...text].forEach((char, index) => {
-        const span = document.createElement('span');
-        span.textContent = char;
-        span.style.setProperty('--index', index);
-        element.appendChild(span);
-      });
+      // テキストノードを処理してspanで囲む
+      const processNode = function (node) {
+        let charIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
+          value: 0
+        };
+        if (node.nodeType === Node.TEXT_NODE) {
+          const text = node.textContent;
+          const fragment = document.createDocumentFragment();
+          [...text].forEach(char => {
+            const span = document.createElement('span');
+            span.textContent = char;
+            span.style.setProperty('--index', charIndex.value);
+
+            // 最初の要素（elementIndex === 0）内の特定のインデックス（5,6,7）にtext-dotsクラスを追加
+            if (elementIndex === 0 && (charIndex.value === 5 || charIndex.value === 6 || charIndex.value === 7)) {
+              span.classList.add('text-dots');
+            }
+            fragment.appendChild(span);
+            charIndex.value++;
+          });
+
+          // テキストノードをfragmentで置き換え
+          node.parentNode.replaceChild(fragment, node);
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          // text-dots要素の場合は展開してテキストノードに変換
+          if (node.classList.contains('text-dots')) {
+            const text = node.textContent;
+            const textNode = document.createTextNode(text);
+            node.parentNode.replaceChild(textNode, node);
+            // 展開したテキストノードを処理
+            processNode(textNode, charIndex);
+          } else {
+            // その他の要素の子ノードを処理
+            const childNodes = Array.from(node.childNodes);
+            childNodes.forEach(child => processNode(child, charIndex));
+          }
+        }
+      };
+
+      // 子ノードを処理
+      const childNodes = Array.from(element.childNodes);
+      childNodes.forEach(child => processNode(child, {
+        value: 0
+      }));
     });
   }
   wrapTextInSpans('.mv-text-animation');
@@ -77,7 +111,6 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ===============================================
   # MVの高さを取得
   =============================================== */
-
   function updateMVHeight() {
     const mv = document.querySelector('.mv');
     if (mv) {
@@ -85,68 +118,45 @@ document.addEventListener("DOMContentLoaded", function () {
       document.documentElement.style.setProperty('--mv-height', `${mvHeight}px`);
     }
   }
-
-  // 初回設定
   updateMVHeight();
-
-  // ウィンドウリサイズ時にも更新
   window.addEventListener('resize', updateMVHeight);
-});
-document.addEventListener("DOMContentLoaded", () => {
-  const stickyAbout = document.querySelector(".about"); // aboutセクションのクラスを指定
-  if (!stickyAbout) return;
-  const adjustStickyTop = () => {
-    const windowHeight = window.innerHeight;
-    const aboutHeight = stickyAbout.offsetHeight;
-    if (aboutHeight > windowHeight) {
-      // 画面の高さを超える場合、余分な部分を引いてtopを調整
-      stickyAbout.style.top = `${windowHeight - aboutHeight}px`;
-    } else {
-      // 画面に収まる場合はデフォルトのtop 0を適用
-      stickyAbout.style.top = "0";
-    }
-  };
-
-  // ページ読み込み時に適用
-  adjustStickyTop();
-
-  // 画面リサイズ時にも適用
-  window.addEventListener("resize", adjustStickyTop);
 
   /* ===============================================
   # aboutへのリンク
   =============================================== */
-  const aboutLinks = document.querySelectorAll('a[href="#about"]');
-  aboutLinks.forEach(link => {
-    link.addEventListener("click", function (event) {
-      event.preventDefault();
-
-      // `position: relative` に変更して sticky の影響を防ぐ
-      stickyAbout.style.position = "relative";
-
-      // `top` の値をリセット
-      stickyAbout.style.top = "0";
-
-      // スムーススクロール
-      stickyAbout.scrollIntoView({
-        behavior: "smooth"
+  const stickyAbout = document.querySelector(".about");
+  if (stickyAbout) {
+    const adjustStickyTop = () => {
+      const windowHeight = window.innerHeight;
+      const aboutHeight = stickyAbout.offsetHeight;
+      if (aboutHeight > windowHeight) {
+        stickyAbout.style.top = `${windowHeight - aboutHeight}px`;
+      } else {
+        stickyAbout.style.top = "0";
+      }
+    };
+    adjustStickyTop();
+    window.addEventListener("resize", adjustStickyTop);
+    const aboutLinks = document.querySelectorAll('a[href="#about"]');
+    aboutLinks.forEach(link => {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+        stickyAbout.style.position = "relative";
+        stickyAbout.style.top = "0";
+        stickyAbout.scrollIntoView({
+          behavior: "smooth"
+        });
+        setTimeout(() => {
+          stickyAbout.style.position = "sticky";
+          adjustStickyTop();
+        }, 1000);
       });
-      setTimeout(() => {
-        // スクロール完了後 `sticky` を再適用
-        stickyAbout.style.position = "sticky";
-
-        // 再計算して適切な `top` を設定
-        adjustStickyTop();
-      }, 1000);
     });
-  });
-});
+  }
 
-/* ===============================================
-# オープニングアニメーション
-=============================================== */
-
-document.addEventListener("DOMContentLoaded", function () {
+  /* ===============================================
+  # オープニングアニメーション
+  =============================================== */
   var loadingWrapper = document.getElementById("loading-wrapper");
   var lottieContainer = document.getElementById("lottie-container");
   var body = document.body;
@@ -163,16 +173,11 @@ document.addEventListener("DOMContentLoaded", function () {
         path: "/wp-content/themes/ades/assets/js/loading.json"
       });
       animation.addEventListener("complete", function () {
-        // **ローディングフェードアウトと同時にテキストアニメーションを開始**
         loadingWrapper.style.transition = "opacity 1s ease";
         loadingWrapper.style.opacity = "0";
-
-        // **フェードアウト開始から0.2秒後にテキストアニメーションをスタート**
         setTimeout(function () {
           body.classList.add("animate-text");
-        }, 200); // ここで 0.2秒遅延
-
-        // **フェードアウトが完了する 1秒後 にローディング要素を削除**
+        }, 200);
         setTimeout(function () {
           loadingWrapper.remove();
         }, 1000);
@@ -182,7 +187,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (loadingWrapper) {
       loadingWrapper.remove();
     }
-    // **2回目以降は即座にテキストアニメーションを適用**
     body.classList.add("animate-text");
   }
 });

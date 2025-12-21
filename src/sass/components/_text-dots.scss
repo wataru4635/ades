@@ -1,0 +1,60 @@
+@use "global"as *;
+
+.text-dots {
+  position: relative;
+}
+
+.text-dots::before {
+  content: '';
+  position: absolute;
+  top: rem(2);
+  left: 50%;
+  translate: -50% 0;
+  aspect-ratio: 1/1;
+  width: rem(2);
+  border-radius: calc(infinity * 1px);
+  background-color: currentColor;
+
+  @include mq('md') {
+    top: rem(-2);
+    width: rem(4);
+  }
+}
+
+
+.sub-about__lead .text-dots::before {
+  width: rem(3);
+
+  @include mq('md') {
+    width: rem(6);
+    top: rem(3);
+  }
+}
+
+.mv__title-text--first span {
+  @media (max-width: 767px) {
+    padding-top: rem(5);
+  }
+}
+
+.mv__title-text .text-dots::before {
+  width: rem(5);
+  top: 0;
+
+  @include mq('md') {
+    width: rem(8);
+    top: 0;
+  }
+}
+
+.about__subtitle .text-dots::before  {
+  @media (max-width: 767px) {
+   width: rem(4);
+   top: 0;
+  }
+}
+
+.ceo-message__title .text-dots::before {
+  width: rem(5);
+  top: 0;
+}

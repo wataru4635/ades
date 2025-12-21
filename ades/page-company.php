@@ -34,7 +34,7 @@ Template Name: Company
 
         <div class="overview__item overview__item--01">
           <div class="overview__img-wrap">
-            <img src="<?php echo esc_url(get_theme_file_uri()); ?>/assets/images/common/logo.svg" alt="ADESのロゴ" width="386" height="85" loading="lazy" class="overview__img">
+            <img src="<?php echo esc_url(get_theme_file_uri()); ?>/assets/images/common/logo.webp" alt="ADESのロゴ" width="386" height="85" loading="lazy" class="overview__img">
           </div>
           <h3 class="overview__company-name">
             株式会社 ADES<span class="overview__company-name-sub">（株式会社アデス）</span>
@@ -136,7 +136,7 @@ Template Name: Company
       </div>
       <div class="ceo-message__text-wrap">
         <div class="ceo-message__main">
-          <h3 class="ceo-message__title">企業や社会を<br class="u-mobile">デザインの<br>チカラで豊かに</h3>
+          <h3 class="ceo-message__title">企業や社会を<br>デザインの<br class="u-mobile"><span class="text-dots">チ</span><span class="text-dots">カ</span><span class="text-dots">ラ</span>で豊かに</h3>
           <p class="ceo-message__text">
             幼い頃から、工作や絵を描くことが好きでした。<br>
             実家の壁によく落書きをして、両親を困らせたものです。<br>
@@ -167,7 +167,7 @@ Template Name: Company
         </a>
       </div>
       <div class="access__map-wrap">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6300238348817!2d139.7131504!3d35.661486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b60ea94d027%3A0x47f8a3c5de863d0f!2z44ixQURFU--8iOOCouODh-OCue-8iQ!5e0!3m2!1sja!2sjp!4v1765508056885!5m2!1sja!2sjp" width="1080" height="500" loading="lazy" style="border:0;" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade" class="access__map" title="株式会社ADESの所在地"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6300238348817!2d139.7131504!3d35.661486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b60ea94d027%3A0x47f8a3c5de863d0f!2z44ixQURFU--8iOOCouODh-OCue-8iQ!5e0!3m2!1sja!2sjp!4v1766213629892!5m2!1sja!2sjp" width="1080" height="500" loading="lazy" style="border:0;" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade" class="access__map" title="株式会社ADESの所在地"></iframe>
       </div>
       <p class="access__note">
         東京メトロ「表参道駅」B1出口より徒歩7分

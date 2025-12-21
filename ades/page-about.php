@@ -29,7 +29,7 @@ Template Name: About
         <h2 class="section-title02 js-title-animation">About Us</h2>
       </div>
       <p class="sub-about__lead">
-        企業や社会をデザインの<br>チカラで豊かにする会社
+        企業や社会をデザインの<br><span class="text-dots">チ</span><span class="text-dots">カ</span><span class="text-dots">ラ</span>で豊かにする会社
       </p>
       <div class="sub-about__text-wrap">
         <p class="sub-about__text">
@@ -39,7 +39,7 @@ Template Name: About
           <span class="sub-about__text-year">２００７</span>年に株式会社アデスが誕生しました。
         </p>
         <p class="sub-about__text">
-          創業以来、私たちが一環して大切にしているのがデザインの<span class="sub-about__text-dots">チカラ</span>です。<br>
+          創業以来、私たちが一環して大切にしているのがデザインの<span class="text-dots">チ</span><span class="text-dots">カ</span><span class="text-dots">ラ</span>です。<br>
           デザインには様々なチカラがあり、時には社会や人を動かす事も可能です。<br>
           そんなデザインに込められた確かなチカラを信じ、<br>
           豊かな社会の創造の一躍担っていきたいと考えます。

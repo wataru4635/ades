@@ -75,13 +75,13 @@
   font-family: 'Noto Sans JP', sans-serif;
   font-size: rem(27);
   font-weight: 700;
-  line-height: 1.333;
+  line-height: 1.45;
   letter-spacing: 0.1em;
   color: #0A3158;
   text-align: center;
   
   @include mq('md') {
-    line-height: 1.185;
+    line-height: 1.55;
     text-align: left;
   }
 }

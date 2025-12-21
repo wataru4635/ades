@@ -7,7 +7,7 @@
 <section class="mv">
   <div class="mv__inner">
     <div class="mv__content">
-      <h2 class="mv__title"><span class="mv__title-text mv-text-animation">デザインのチカラで</span><br><span class="mv__title-text mv-text-animation">企業や社会をより豊かに</span></h2>
+      <h2 class="mv__title"><span class="mv__title-text mv__title-text--first mv-text-animation">デザインのチカラで</span><br><span class="mv__title-text mv__title-text--second mv-text-animation">企業や社会をより豊かに</span></h2>
       <p class="mv__text mv-text-animation delay-1">For advertising and design frontier,we will
         provide excellent services.</p>
       <a href="/works.html" class="mv__link">私たちについて</a>
@@ -40,7 +40,7 @@
 <section class="about" id="about">
   <div class="about__inner inner">
     <h2 class="about__title section-title js-title-animation">About&nbsp;us</h2>
-    <h3 class="about__subtitle js-fade-in">企業や社会をデザインのチカラで豊かにする会社</h3>
+    <h3 class="about__subtitle js-fade-in">企業や社会をデザインの<span class="text-dots">チ</span><span class="text-dots">カ</span><span class="text-dots">ラ</span>で豊かにする会社</h3>
     <div class="about__text-wrap js-fade-in">
       <p class="about__text">私たちadesinc.の原点はグラフィックデザイン。<br class="u-desktop">2024年で設立25周年を迎える篠田デザイン事務所。<br class="u-desktop">私たちadesinc.はその一部門から誕生いたしました。</p>
       <p class="about__text">グラフィックデザインで培った信頼と経験をベースに、<br class="u-desktop">WEB、映像制作、グッズ製作、展示会ブース制作などへと、その担当領域を広げています。
@@ -60,9 +60,9 @@
       <p class="our-business__subtitle js-fade-in">3つのコミュニケーション分野で<br>ビジネスをサポート</p>
     <div class="our-business__cards">
       <div class="our-business__card our-business__card--blue js-fade-in">
-        <div class="our-business__icon-wrap">
+        <a href="<?php echo esc_url(home_url('/works-category/pr-ir-support/')); ?>" class="our-business__icon-wrap">
           <img src="<?php echo esc_url(get_theme_file_uri()); ?>/assets/images/top/our-business01.svg" alt="" class="our-business__icon" width="320" height="320">
-        </div>
+        </a>
         <div class="our-business__card-content">
           <div class="our-business__service-item">
             <h3 class="our-business__service-title">広報・IR支援</h3>
@@ -99,9 +99,9 @@
         </div>
       </div>
       <div class="our-business__card our-business__card--red js-fade-in --delay-1">
-        <div class="our-business__icon-wrap">
+        <a href="<?php echo esc_url(home_url('/works-category/sales-promotion/')); ?>" class="our-business__icon-wrap">
           <img src="<?php echo esc_url(get_theme_file_uri()); ?>/assets/images/top/our-business02.svg" alt="" class="our-business__icon" width="320" height="320">
-        </div>
+        </a>
         <div class="our-business__card-content">
           <div class="our-business__service-item">
             <h3 class="our-business__service-title">販売促進</h3>
@@ -122,9 +122,9 @@
         </div>
       </div>
       <div class="our-business__card our-business__card--yellow js-fade-in --delay-2">
-        <div class="our-business__icon-wrap">
+        <a href="<?php echo esc_url(home_url('/works-category/brand/')); ?>" class="our-business__icon-wrap">
           <img src="<?php echo esc_url(get_theme_file_uri()); ?>/assets/images/top/our-business03.svg" alt="" class="our-business__icon" width="320" height="320">
-        </div>
+        </a>
         <div class="our-business__card-content">
           <div class="our-business__service-item">
             <h3 class="our-business__service-title">CI・VI</h3>

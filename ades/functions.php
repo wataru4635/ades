@@ -11,6 +11,20 @@ function my_theme_setup() {
 }
 add_action('after_setup_theme', 'my_theme_setup');
 
+// ==========================================================================
+// 不要な head内のタグやスクリプトを削除する関数
+// ==========================================================================
+function codeups_clean_up_head() {
+    remove_action('wp_head', 'wp_generator');
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('wp_print_styles', 'print_emoji_styles');
+    remove_action('wp_head', 'rsd_link');
+    remove_action('wp_head', 'wlwmanifest_link');
+    remove_action('wp_head', 'feed_links_extra', 3);
+  }
+
+  add_action('after_setup_theme', 'codeups_clean_up_head');
+  
 // ================================================
 // スクリプトとスタイルのエンキュー（共通 + 特定ページ）
 // ================================================
@@ -130,6 +144,20 @@ function remove_menus() {
   }
   add_action( 'admin_menu', 'remove_menus', 999 );
 
+// ==========================================================================
+// デフォルトの投稿を非表示化
+// ==========================================================================
+function remove_default_post_type() {
+	remove_menu_page('edit.php');
+}
+add_action('admin_menu', 'remove_default_post_type');
+
+function remove_default_post_type_from_admin_bar() {
+	global $wp_admin_bar;
+	$wp_admin_bar->remove_node('new-post');
+}
+add_action('admin_bar_menu', 'remove_default_post_type_from_admin_bar', 999);
+
 // ================================================
 // 実績一覧（works）
 // ================================================
@@ -192,6 +220,26 @@ function create_works_taxonomy() {
 
 add_action('init', 'create_post_type_works');
 add_action('init', 'create_works_taxonomy');
+
+// ==========================================================================
+// カスタム投稿タイプ【実績】のパーマリンク設定
+// ==========================================================================
+
+add_filter('post_type_link', 'custom_post_type_permalink', 10, 2);
+function custom_post_type_permalink($link, $post) {
+    if ($post->post_type === 'works') {
+        return home_url('/' . $post->post_type . '/' . $post->ID . '/');
+    }
+    return $link;
+}
+
+add_filter('rewrite_rules_array', 'custom_post_type_rewrite_rules');
+function custom_post_type_rewrite_rules($rules) {
+    $new_rules = array(
+        'works/([0-9]+)/?$' => 'index.php?post_type=works&p=$matches[1]',
+    );
+    return $new_rules + $rules;
+}
 
 
 // ================================================
@@ -269,25 +317,46 @@ function wpcf7_autop_return_false() {
   add_filter('wpcf7_autop_or_not', 'wpcf7_autop_return_false');
   add_filter( 'wpcf7_validate_configuration', '__return_false' );
   
-// ================================================
+
+// ==========================================================================
 // 投稿者アーカイブ無効化
-// ================================================
-
+// ==========================================================================
 add_filter('author_rewrite_rules', '__return_empty_array');
-add_action('template_redirect', function () {
-	if (is_author() || get_query_var('author_name') || get_query_var('author')) {
-		global $wp_query;
-		$wp_query->set_404();
-		status_header(404);
-		nocache_headers();
-		include get_404_template();
-		exit;
-	}
-});
 
-// ================================================
-// ユーザーのサイトマップを無効化
-// ================================================
+// ==========================================================================
+// フロント側でのユーザー名露出防止：著者アーカイブ/クエリを 404 に
+// ==========================================================================
+add_action('template_redirect', function () {
+    if ( is_author()
+      || get_query_var('author_name')
+      || get_query_var('author')
+      || isset($_GET['author'])
+    ) {
+        global $wp_query;
+        $wp_query->set_404();
+        status_header(404);
+        nocache_headers();
+        include get_404_template();
+        exit;
+    }
+}, 9);
+
+// ==========================================================================
+// ユーザーのサイトマップを無効化（/wp-sitemap.xml 内の users を除外）
+// ==========================================================================
 add_filter('wp_sitemaps_add_provider', function ($provider, $name) {
-  return $name === 'users' ? false : $provider;
+    return ($name === 'users') ? false : $provider;
 }, 10, 2);
+
+// ==========================================================================
+// REST API からのユーザー列挙防止
+// ==========================================================================
+add_filter('rest_endpoints', function ($endpoints) {
+    if ( isset($endpoints['/wp/v2/users']) ) {
+        unset($endpoints['/wp/v2/users']);
+    }
+    if ( isset($endpoints['/wp/v2/users/(?P<id>[\d]+)']) ) {
+        unset($endpoints['/wp/v2/users/(?P<id>[\d]+)']);
+    }
+    return $endpoints;
+});
