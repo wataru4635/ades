@@ -53,54 +53,54 @@ document.addEventListener("DOMContentLoaded", function() {
   createWorksSwiper('.js-works-swiper02');
 
   /* ===============================================
-  # テキストをspanで囲み、
+  # テキストをspanで囲み
   =============================================== */
   function wrapTextInSpans(selector) {
     const elements = document.querySelectorAll(selector);
     elements.forEach((element, elementIndex) => {
       element.style.setProperty('--delay', elementIndex * 0.3 + 's');
-      
+
       // テキストノードを処理してspanで囲む
-      const processNode = (node, charIndex = { value: 0 }) => {
+      const processNode = (node, charIndex = {
+        value: 0
+      }) => {
         if (node.nodeType === Node.TEXT_NODE) {
           const text = node.textContent;
           const fragment = document.createDocumentFragment();
-          
+
           [...text].forEach((char) => {
             const span = document.createElement('span');
             span.textContent = char;
             span.style.setProperty('--index', charIndex.value);
-            
+
             // 最初の要素（elementIndex === 0）内の特定のインデックス（5,6,7）にtext-dotsクラスを追加
             if (elementIndex === 0 && (charIndex.value === 5 || charIndex.value === 6 || charIndex.value === 7)) {
               span.classList.add('text-dots');
             }
-            
+
             fragment.appendChild(span);
             charIndex.value++;
           });
-          
-          // テキストノードをfragmentで置き換え
+
           node.parentNode.replaceChild(fragment, node);
         } else if (node.nodeType === Node.ELEMENT_NODE) {
-          // text-dots要素の場合は展開してテキストノードに変換
           if (node.classList.contains('text-dots')) {
             const text = node.textContent;
             const textNode = document.createTextNode(text);
             node.parentNode.replaceChild(textNode, node);
-            // 展開したテキストノードを処理
             processNode(textNode, charIndex);
           } else {
-            // その他の要素の子ノードを処理
             const childNodes = Array.from(node.childNodes);
             childNodes.forEach(child => processNode(child, charIndex));
           }
         }
       };
-      
+
       // 子ノードを処理
       const childNodes = Array.from(element.childNodes);
-      childNodes.forEach(child => processNode(child, { value: 0 }));
+      childNodes.forEach(child => processNode(child, {
+        value: 0
+      }));
     });
   }
 

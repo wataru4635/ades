@@ -23,7 +23,7 @@
 
 
 .sub-about__lead .text-dots::before {
-  width: rem(3);
+  width: rem(4);
 
   @include mq('md') {
     width: rem(6);

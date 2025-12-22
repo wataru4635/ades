@@ -86,6 +86,12 @@
   }
 }
 
+.ceo-message__title-dots-wrap {
+  @media (max-width: 767px) {
+    margin-top: rem(3);
+  }
+}
+
 .ceo-message__text {
   font-family: 'Noto Sans JP', sans-serif;
   font-size: rem(15);

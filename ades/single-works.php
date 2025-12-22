@@ -22,12 +22,6 @@
     <div class="single-works-mv__content">
         <p class="single-works-mv__en-title">works</p>
         <h1 class="single-works-mv__jp-title"><?php the_title(); ?></h1>
-        <p class="single-works-mv__sub-title"><?php the_field('sub_title'); ?></p>
-        <?php 
-        $terms = get_the_terms(get_the_ID(), 'works_category'); 
-        $category_name = (!empty($terms) && !is_wp_error($terms)) ? esc_html($terms[0]->name) : '未分類'; 
-        ?>
-        <p class="single-works-mv__category"><?php echo $category_name; ?></p>
     </div>
 </section>
 
@@ -57,27 +51,10 @@
                             <dt class="single-works__info-title">Launch Date</dt>
                             <dd class="single-works__info-detail"><?php the_field('launch_date'); ?></dd>
                         </div>
-                        <div class="single-works__info-item">
-                            <dt class="single-works__info-title">Project</dt>
-                            <dd class="single-works__info-detail single-works__info-detail--team-wrap">
-                                <?php 
-                                $project_team = get_field('project_team');
-                                if ($project_team) {
-                                    for ($i = 1; $i <= 4; $i++) {
-                                        $member = $project_team["member_$i"];
-                                        if (!empty($member)) {
-                                            echo '<span class="single-works__info-detail--team">' . esc_html($member) . '</span>';
-                                        }
-                                    }
-                                }
-                                ?>
-                            </dd>
-                        </div>
                     </dl>
                     <div class="single-works__info-summary">
-                        <p class="single-works__info-text">制作期間：<?php the_field('production_period'); ?></p>
-                        <p class="single-works__info-text">受注形態：<?php the_field('contract_type'); ?></p>
-                        <p class="single-works__info-text">制作規模：<?php the_field('scale'); ?></p>
+                        <p class="single-works__info-summary-title">Specification</p>
+                        <p class="single-works__info-summary-text"><?php the_field('specification'); ?></p>
                     </div>
                 </div>
 

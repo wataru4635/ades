@@ -136,7 +136,7 @@ Template Name: Company
       </div>
       <div class="ceo-message__text-wrap">
         <div class="ceo-message__main">
-          <h3 class="ceo-message__title">企業や社会を<br>デザインの<br class="u-mobile"><span class="text-dots">チ</span><span class="text-dots">カ</span><span class="text-dots">ラ</span>で豊かに</h3>
+          <h3 class="ceo-message__title">企業や社会を<br>デザインの<br class="u-mobile"><span class="ceo-message__title-dots-wrap"><span class="text-dots">チ</span><span class="text-dots">カ</span><span class="text-dots">ラ</span>で豊かに</span></h3>
           <p class="ceo-message__text">
             幼い頃から、工作や絵を描くことが好きでした。<br>
             実家の壁によく落書きをして、両親を困らせたものです。<br>

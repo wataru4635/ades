@@ -388,27 +388,6 @@ button {
 	letter-spacing: 3.3px;
 }
 
-.single-works-mv__sub-title {
-	color: var(--white);
-	font-size: 0.8125rem;
-	font-weight: 400;
-	letter-spacing: 1.3px;
-}
-
-.single-works-mv__category {
-	background-color: #096DA0;
-	color: var(--white);
-	display: inline-block;
-	font-size: 0.625rem;
-	font-weight: 400;
-	letter-spacing: 1px;
-	line-height: 1;
-	margin-top: 0.625rem;
-	padding: 0.375rem 1.5rem;
-	width: -moz-fit-content;
-	width: fit-content;
-}
-
 .single-works {
 	background-color: var(--white);
 	border-radius: 25px 25px 0px 0px;
@@ -444,7 +423,7 @@ button {
 	color: var(--main-color);
 	font-family: "Josefin Sans", serif;
 	font-size: 0.9375rem;
-	font-weight: 500;
+	font-weight: 600;
 	padding-bottom: 0.1875rem;
 	padding-top: 0.1875rem;
 }
@@ -460,27 +439,29 @@ button {
 	padding-top: 0.1875rem;
 }
 
-.single-works__info-detail--team-wrap {
-	display: flex;
-	flex-direction: column;
-	gap: 0.9375rem;
-}
-
 .single-works__info-summary {
 	background-color: #F4F4F4;
 	display: flex;
 	flex-direction: column;
-	gap: 0.8125rem;
 	margin-top: 1.875rem;
 	padding: 1.125rem 1.25rem;
 }
 
-.single-works__info-text {
+.single-works__info-summary-title {
+	color: var(--main-color);
+	font-family: "Josefin Sans", serif;
+	font-size: 0.9375rem;
+	font-weight: 600;
+	letter-spacing: 1.4px;
+	line-height: 1;
+}
+
+.single-works__info-summary-text {
 	color: #9FA0A0;
 	font-size: 0.875rem;
 	font-weight: 400;
 	letter-spacing: 1.4px;
-	line-height: 1;
+	margin-top: 0.25rem;
 }
 
 .single-works__text-wrap {
@@ -2637,7 +2618,7 @@ html {
 }
 
 .sub-about__lead .text-dots::before {
-	width: 0.1875rem;
+	width: 0.25rem;
 }
 
 .mv__title-text .text-dots::before {
@@ -2841,15 +2822,6 @@ html {
 .single-works-mv__jp-title {
 	font-size: 2.8125rem;
 	letter-spacing: 4.5px;
-}
-
-.single-works-mv__sub-title {
-	font-size: 1.125rem;
-	letter-spacing: 1.8px;
-}
-
-.single-works-mv__category {
-	padding: 0.375rem 2.625rem;
 }
 
 .single-works {
@@ -3875,6 +3847,10 @@ html {
 	right: 0.6875rem;
 	top: 50%;
 	transform: translateY(-50%);
+}
+
+.ceo-message__title-dots-wrap {
+	margin-top: 0.1875rem;
 }
 
 .overview__company-name {

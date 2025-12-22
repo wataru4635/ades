@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
   createWorksSwiper('.js-works-swiper02');
 
   /* ===============================================
-  # テキストをspanで囲み、
+  # テキストをspanで囲み
   =============================================== */
   function wrapTextInSpans(selector) {
     const elements = document.querySelectorAll(selector);
@@ -80,19 +80,14 @@ document.addEventListener("DOMContentLoaded", function () {
             fragment.appendChild(span);
             charIndex.value++;
           });
-
-          // テキストノードをfragmentで置き換え
           node.parentNode.replaceChild(fragment, node);
         } else if (node.nodeType === Node.ELEMENT_NODE) {
-          // text-dots要素の場合は展開してテキストノードに変換
           if (node.classList.contains('text-dots')) {
             const text = node.textContent;
             const textNode = document.createTextNode(text);
             node.parentNode.replaceChild(textNode, node);
-            // 展開したテキストノードを処理
             processNode(textNode, charIndex);
           } else {
-            // その他の要素の子ノードを処理
             const childNodes = Array.from(node.childNodes);
             childNodes.forEach(child => processNode(child, charIndex));
           }
